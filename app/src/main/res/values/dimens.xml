@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_location_box">10dp</dimen>
+    <dimen name="location_box_shadow_radius">20dp</dimen>
+    <dimen name="border_radius">20dp</dimen>
+</resources>
