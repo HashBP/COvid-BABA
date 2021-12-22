@@ -31,8 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_above="@+id/locate_btn"
-        android:layout_centerInParent="true"
 
+        android:layout_centerInParent="true"
         android:gravity="center"
         android:text="@string/textview3"
         android:textColor="#FFFFFF"
@@ -49,32 +49,35 @@
     <RelativeLayout
         android:id="@+id/icon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/icon_padding">
 
         <ImageView
             android:id="@+id/icon1"
-            android:onClick="toCoWin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_alignParentStart="true"
-            android:background="@drawable/icons" />
+            android:background="@drawable/icons"
+            android:onClick="toCoWin"
+            app:srcCompat="@drawable/ic_guidelines__7_" />
 
         <ImageView
             android:id="@+id/icon2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_centerInParent="true"
             android:background="@drawable/icons" />
 
         <ImageView
             android:id="@+id/icon3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/icons"
-            android:onClick="toWho"/>
+            android:onClick="toWho"
+            app:srcCompat="@drawable/ic_guidelines"
+            tools:ignore="ImageContrastCheck" />
     </RelativeLayout>
 
 
