@@ -1,42 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_centerInParent="false"
     android:layout_centerHorizontal="false"
-    android:weightSum="10"
-    android:orientation="vertical"
     android:layout_centerVertical="false"
     android:background="@color/background_main"
+    android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textview1"
         style="@style/background_slide_style2"
-        android:layout_weight="3"
+        android:layout_alignParentTop="true"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textview2"
         style="@style/background_slide_style2"
+        android:layout_below="@+id/textview1"
         android:layout_marginTop="9dp" />
 
     <TextView
-        android:id="@+id/textview3.1"
+        android:id="@+id/textview3"
         style="@style/background_slide_style3"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="@string/textview3"
-        android:textColor="#616161" />
+        android:layout_height="40dp"
+        android:layout_above="@+id/locate_btn"
+        android:layout_centerInParent="true"
 
-    <TextView
-        android:id="@+id/textview3.2"
-        style="@style/background_slide_style"
+        android:gravity="center"
+        android:text="@string/textview3"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/locate_btn"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="@string/textview3"
-        android:textColor="#616161" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/icon"
+        android:text="@string/locate_btn" />
+
+    <RelativeLayout
+        android:id="@+id/icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/icon_padding">
+
+        <ImageView
+            android:id="@+id/icon1"
+            android:onClick="toCoWin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/icons" />
+
+        <ImageView
+            android:id="@+id/icon2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/icons" />
+
+        <ImageView
+            android:id="@+id/icon3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/icons"
+            android:onClick="toWho"/>
+    </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

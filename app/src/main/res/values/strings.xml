@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GDSCAndroidProject</string>
-    <string name="textview3">Really Long Text is Here ........... .  . .. . ......... ............ .............. .................... .................................. ................. ............... ...................... ..................... ....................... ................ </string>
+    <string name="textview3">Locate your nearest Vaccination Center</string>
+    <string name="locate_btn">Locate</string>
 </resources>
