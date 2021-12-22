@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="background_slide_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">200dp</item>
-
         <item name="android:layout_marginTop">@dimen/margin_location_box</item>
-
         <item name="android:layout_marginBottom">@dimen/margin_location_box</item>
         <item name="android:background">@drawable/border</item>
     </style>
@@ -22,10 +19,32 @@
     <style name="background_slide_style3">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">200dp</item>
-
         <item name="android:layout_marginTop">@dimen/margin_location_box</item>
-
         <item name="android:layout_marginBottom">@dimen/margin_location_box</item>
         <item name="android:background">@drawable/border3</item>
     </style>
+    <style name="HiddenTitleTheme" parent="Theme.GDSCAndroidProject">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+    <style name="background_slide_style4">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">200dp</item>
+    <item name="android:layout_marginStart">@dimen/margin_location_box</item>
+    <item name="android:layout_marginTop">@dimen/margin_location_box</item>
+    <item name="android:layout_marginEnd">@dimen/margin_location_box</item>
+    <item name="android:layout_marginBottom">@dimen/margin_location_box</item>
+    <item name="android:background">@drawable/border4</item>
+    </style>
+
+    <style name="background_slide_style31" parent="background_slide_style3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
 </resources>

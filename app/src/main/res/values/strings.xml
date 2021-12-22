@@ -2,4 +2,8 @@
     <string name="app_name">GDSCAndroidProject</string>
     <string name="textview3">Locate your nearest Vaccination Center</string>
     <string name="locate_btn">Locate</string>
+    <string name="startbtn">Start</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="take_name">Enter your Name</string>
+    <string name="btn_text">Done</string>
 </resources>
