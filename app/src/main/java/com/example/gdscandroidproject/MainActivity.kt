@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                         NewLocationData()
                     }else{
                         Log.d("Debug:" ,"Your Location:"+ location.longitude)
-                        start_info.text = "Hii " + input_text.text +", \nYou Current Location is : \nLongitude : "+ location.longitude + " , \nLatitude : " + location.latitude + "\nCity : " + getCityName(location.latitude,location.longitude)
+                        start_info.text = "Hii " + input_text.text +", \nYou Current Location is : \nLongitude : "+ location.longitude + " , \nLatitude : " + location.latitude + "\nDistrict: " + getDstName(location.latitude,location.longitude)+"\nState: "+ getStateName(location.latitude,location.longitude)
                     }
                 }
             }else{
@@ -78,15 +78,21 @@ class MainActivity : AppCompatActivity() {
             RequestPermission()
         }
     }
-    private fun getCityName(lat: Double,long: Double):String{
-        var cityName:String = ""
-        var countryName = ""
+    private fun getDstName(lat: Double,long: Double):String{
+        var DstName:String = ""
         var geoCoder = Geocoder(this, Locale.getDefault())
         var Adress = geoCoder.getFromLocation(lat,long,3)
-        cityName = Adress.get(0).locality
-        countryName = Adress.get(0).countryName
-        Log.d("Debug:","Your City: " + cityName + " ; your Country " + countryName)
-        return cityName
+        Log.d("list", Adress.toString());
+        DstName = Adress.get(0).subAdminArea
+        return DstName
+    }
+    private fun getStateName(lat: Double,long: Double):String{
+        var State = ""
+        var geoCoder = Geocoder(this, Locale.getDefault())
+        var Adress = geoCoder.getFromLocation(lat,long,3)
+        Log.d("list", Adress.toString());
+        State= Adress.get(0).adminArea
+        return State
     }
     fun NewLocationData(){
         var locationRequest =  LocationRequest()
@@ -124,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         override fun onLocationResult(locationResult: LocationResult) {
             var lastLocation: Location = locationResult.lastLocation
             Log.d("Debug:","your last last location: "+ lastLocation.longitude.toString())
-            start_info.text = "You Last Location was : \nLongitude: "+ lastLocation.longitude + "  \nLatitude: " + lastLocation.latitude + "\nCity:" + getCityName(lastLocation.latitude,lastLocation.longitude)
+            start_info.text = "You Last Location was : \nLongitude: "+ lastLocation.longitude + "  \nLatitude: " + lastLocation.latitude + "\nCity:" + getStateName(lastLocation.latitude,lastLocation.longitude)
         }
     }
 
