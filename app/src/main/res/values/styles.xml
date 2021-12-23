@@ -37,11 +37,12 @@
     <item name="android:background">@drawable/border4</item>
     </style>
 
-    <style name="background_slide_style31" parent="background_slide_style3">
+    <style name="background_slide_style31">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_centerInParent">true</item>
         <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/border3</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold|italic</item>

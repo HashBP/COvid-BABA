@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                         NewLocationData()
                     }else{
                         Log.d("Debug:" ,"Your Location:"+ location.longitude)
-                        start_info.text = "You Current Location is : \nLongitude : "+ location.longitude + " , \nLatitude : " + location.latitude + "\nCity : " + getCityName(location.latitude,location.longitude)
+                        start_info.text = "Hii " + input_text.text +", \nYou Current Location is : \nLongitude : "+ location.longitude + " , \nLatitude : " + location.latitude + "\nCity : " + getCityName(location.latitude,location.longitude)
                     }
                 }
             }else{

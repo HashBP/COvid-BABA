@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tool="http://schemas.android.com/tools"
     android:layout_centerInParent="false"
     android:layout_centerHorizontal="false"
     android:layout_centerVertical="false"
-    android:background="@color/background_main"
+    android:background="@drawable/main_background"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".MainActivity">
@@ -43,13 +42,15 @@
         android:visibility="visible">
 
         <EditText
+            android:id="@+id/input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/start_button"
             android:hint="@string/take_name"
             android:inputType="text"
             android:minHeight="48dp"
-            android:paddingLeft="@dimen/edittext_padding" />
+            android:paddingLeft="@dimen/edittext_padding"
+            android:textColorLink="#FFFFFF" />
 
         <Button
             android:id="@+id/start_button"
@@ -65,20 +66,19 @@
         android:visibility="gone"
         tools:ignore="SpeakableTextPresentCheck"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/textview3"
-        style="@style/background_slide_style3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/textview2">
+        android:layout_height="match_parent"
+        android:layout_below="@id/textview2"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp"
+        android:orientation="vertical"
+        android:weightSum="8">
 
-        <TextView
-            android:id="@+id/text1"
-            style="@style/background_slide_style31"
-            android:layout_centerInParent="true"
-            android:text="@string/textview3" />
-    </RelativeLayout>
+
+    </LinearLayout>
+
     <TextView
     android:layout_width="match_parent"
     android:layout_height="40dp"
@@ -115,7 +115,7 @@
             android:layout_height="120dp"
             android:layout_centerInParent="true"
             android:background="@drawable/icons"
-            app:srcCompat="@drawable/ic_untitled_design" />
+            app:srcCompat="@drawable/ic_untitled_design__4_" />
 
         <ImageView
             android:id="@+id/icon3"
