@@ -128,6 +128,4 @@
             app:srcCompat="@drawable/ic_guidelines"
             tools:ignore="ImageContrastCheck" />
     </RelativeLayout>
-
-
 </RelativeLayout>

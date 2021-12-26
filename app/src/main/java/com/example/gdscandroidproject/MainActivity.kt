@@ -10,20 +10,18 @@ import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Looper
-import android.telecom.Call
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.common.api.Response
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
-import javax.security.auth.callback.Callback
-import kotlin.contracts.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,32 +32,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         start_button.setOnClickListener {
+
             visiblity()
             Log.d("Debug:", CheckPermission().toString())
             Log.d("Debug:", isLocationEnabled().toString())
             RequestPermission()
             getLastLocation()
-            val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
-            val call = serviceGenerator.getPosts()
-
-            val button = findViewById<Button>(R.id.start_button)
-            button.setOnClickListener {
-                call.enqueue(object : Callback<MutableList<PostModel>> {
-                    fun onResponse(
-                        call: Call<MutableList<PostModel>>,
-                        response: Response<MutableList<PostModel>>
-                    ) {
-                        if (response.isSuccessful()) {
-                            Log.e("success", response.body().toString())
-                        }
-                    }
-
-                    fun onFailure(call: Call<MutableList<PostModel>>, t: Throwable) {
-                        t.printStackTrace()
-                        Log.e("error", t.message.toString())
-                    }
-                })
-            }
+            showStatus()
         }
     }
 fun visiblity() {
@@ -226,5 +205,26 @@ fun isLocationEnabled(): Boolean {
     return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
         LocationManager.NETWORK_PROVIDER
     )
+}
+    fun showStatus(){
+    //initiate the service
+    val destinationService = ServiceBuilder.buildService(Service::class.java)
+    val requestCall = destinationService.getStatus()
+    //make network call asynchronously
+    requestCall.enqueue(object : Callback<List<Cases>> {
+        override fun onResponse(call: Call<List<Cases>>, response: Response<List<Cases>>) {
+            Log.d("Response", "onResponse: ${response.body()}")
+            if (response.isSuccessful){
+                val CaseList = response.body()!!
+                Log.d("Response", "Caselist size : ${CaseList.size}")
+                }
+            else{
+                Toast.makeText(this@MainActivity, "Something went wrong ${response.message()}", Toast.LENGTH_SHORT).show()
+            }
+        }
+        override fun onFailure(call: Call<List<Cases>>, t: Throwable) {
+            Toast.makeText(this@MainActivity, "Something went wrong $t", Toast.LENGTH_SHORT).show()
+        }
+    })
 }
 }
