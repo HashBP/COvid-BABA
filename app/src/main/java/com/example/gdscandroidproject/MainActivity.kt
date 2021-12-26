@@ -10,17 +10,26 @@ import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Looper
+import android.telecom.Call
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.common.api.Response
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
 import java.util.*
+import javax.security.auth.callback.Callback
+import kotlin.contracts.*
+
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        this.getWindow()
+            .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
@@ -30,150 +39,192 @@ class MainActivity : AppCompatActivity() {
             Log.d("Debug:", isLocationEnabled().toString())
             RequestPermission()
             getLastLocation()
-        }
-    }
-    fun visiblity(){
-        start_button.visibility=View.INVISIBLE
-        textview1.visibility=View.VISIBLE
-        textview2.visibility=View.VISIBLE
-        textview3.visibility=View.GONE
-        icon.visibility=View.VISIBLE
-        textview2.visibility=View.GONE
-        textview2new.visibility=View.VISIBLE
-        textview3new.visibility=View.VISIBLE
-    }
-    fun getLastLocation(){
-        if(CheckPermission()){
-            if(isLocationEnabled()){
-                if (ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return
-                }
-                fusedLocationProviderClient.lastLocation.addOnCompleteListener { task->
-                    var location: Location? = task.result
-                    if(location == null){
-                        NewLocationData()
-                    }else{
-                        Log.d("Debug:" ,"Your Location:"+ location.longitude)
-                        start_info.text = "Hii " + input_text.text +", \nYou Current Location is : \nLongitude : "+ location.longitude + " , \nLatitude : " + location.latitude + "\nDistrict: " + getDstName(location.latitude,location.longitude)+"\nState: "+ getStateName(location.latitude,location.longitude)
+            val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
+            val call = serviceGenerator.getPosts()
+
+            val button = findViewById<Button>(R.id.start_button)
+            button.setOnClickListener {
+                call.enqueue(object : Callback<MutableList<PostModel>> {
+                    fun onResponse(
+                        call: Call<MutableList<PostModel>>,
+                        response: Response<MutableList<PostModel>>
+                    ) {
+                        if (response.isSuccessful()) {
+                            Log.e("success", response.body().toString())
+                        }
                     }
-                }
-            }else{
-                Toast.makeText(this,"Please Turn on Your device Location",Toast.LENGTH_SHORT).show()
+
+                    fun onFailure(call: Call<MutableList<PostModel>>, t: Throwable) {
+                        t.printStackTrace()
+                        Log.e("error", t.message.toString())
+                    }
+                })
             }
-        }else{
-            RequestPermission()
         }
     }
-    private fun getDstName(lat: Double,long: Double):String{
-        var DstName:String = ""
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var Adress = geoCoder.getFromLocation(lat,long,3)
-        Log.d("list", Adress.toString());
-        DstName = Adress.get(0).subAdminArea
-        return DstName
-    }
-    private fun getStateName(lat: Double,long: Double):String{
-        var State = ""
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var Adress = geoCoder.getFromLocation(lat,long,3)
-        Log.d("list", Adress.toString());
-        State= Adress.get(0).adminArea
-        return State
-    }
-    fun NewLocationData(){
-        var locationRequest =  LocationRequest()
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 0
-        locationRequest.fastestInterval = 0
-        locationRequest.numUpdates = 1
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
-        Looper.myLooper()?.let {
-            fusedLocationProviderClient!!.requestLocationUpdates(
-                locationRequest,locationCallback, it
-            )
-        }
-    }
+fun visiblity() {
+    start_button.visibility = View.INVISIBLE
+    textview1.visibility = View.VISIBLE
+    textview2.visibility = View.VISIBLE
+    textview3.visibility = View.GONE
+    icon.visibility = View.VISIBLE
+    textview2.visibility = View.GONE
+    textview2new.visibility = View.VISIBLE
+    textview3new.visibility = View.VISIBLE
+}
 
-
-    private val locationCallback = object : LocationCallback(){
-        override fun onLocationResult(locationResult: LocationResult) {
-            var lastLocation: Location = locationResult.lastLocation
-            Log.d("Debug:","your last last location: "+ lastLocation.longitude.toString())
-            start_info.text = "You Last Location was : \nLongitude: "+ lastLocation.longitude + "  \nLatitude: " + lastLocation.latitude + "\nCity:" + getStateName(lastLocation.latitude,lastLocation.longitude)
+fun getLastLocation() {
+    if (CheckPermission()) {
+        if (isLocationEnabled()) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return
+            }
+            fusedLocationProviderClient.lastLocation.addOnCompleteListener { task ->
+                var location: Location? = task.result
+                if (location == null) {
+                    NewLocationData()
+                } else {
+                    Log.d("Debug:", "Your Location:" + location.longitude)
+                    start_info.text =
+                        "Hii " + input_text.text + ", \nYou Current Location is : \nLongitude : " + location.longitude + " , \nLatitude : " + location.latitude + "\nDistrict: " + getDstName(
+                            location.latitude,
+                            location.longitude
+                        ) + "\nState: " + getStateName(location.latitude, location.longitude)
+                }
+            }
+        } else {
+            Toast.makeText(this, "Please Turn on Your device Location", Toast.LENGTH_SHORT).show()
         }
+    } else {
+        RequestPermission()
     }
+}
 
-    fun toCoWin(view: View) {
-        val url = "https://selfregistration.cowin.gov.in/"
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
-    }
+private fun getDstName(lat: Double, long: Double): String {
+    var DstName: String = ""
+    var geoCoder = Geocoder(this, Locale.getDefault())
+    var Adress = geoCoder.getFromLocation(lat, long, 3)
+    Log.d("list", Adress.toString());
+    DstName = Adress.get(0).subAdminArea
+    return DstName
+}
 
-    fun toWho(view: View) {
-        val url =
-            "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/technical-guidance"
-        val i = Intent(Intent.ACTION_VIEW)
-        i.data = Uri.parse(url)
-        startActivity(i)
+private fun getStateName(lat: Double, long: Double): String {
+    var State = ""
+    var geoCoder = Geocoder(this, Locale.getDefault())
+    var Adress = geoCoder.getFromLocation(lat, long, 3)
+    Log.d("list", Adress.toString());
+    State = Adress.get(0).adminArea
+    return State
+}
+
+fun NewLocationData() {
+    var locationRequest = LocationRequest()
+    locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+    locationRequest.interval = 0
+    locationRequest.fastestInterval = 0
+    locationRequest.numUpdates = 1
+    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+    if (ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED
+    ) {
+        // TODO: Consider calling
+        //    ActivityCompat#requestPermissions
+        // here to request the missing permissions, and then overriding
+        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+        //                                          int[] grantResults)
+        // to handle the case where the user grants the permission. See the documentation
+        // for ActivityCompat#requestPermissions for more details.
+        return
     }
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var locationRequest: LocationRequest
-    val approval = 1010
-    fun CheckPermission(): Boolean {
-        if (
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            return true
-        }
-        return false
-    }
-    fun RequestPermission(){
-        ActivityCompat.requestPermissions(this,
-            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
-            approval
+    Looper.myLooper()?.let {
+        fusedLocationProviderClient!!.requestLocationUpdates(
+            locationRequest, locationCallback, it
         )
     }
-    fun isLocationEnabled():Boolean{
-        var locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+}
+
+
+private val locationCallback = object : LocationCallback() {
+    override fun onLocationResult(locationResult: LocationResult) {
+        var lastLocation: Location = locationResult.lastLocation
+        Log.d("Debug:", "your last last location: " + lastLocation.longitude.toString())
+        start_info.text =
+            "You Last Location was : \nLongitude: " + lastLocation.longitude + "  \nLatitude: " + lastLocation.latitude + "\nCity:" + getStateName(
+                lastLocation.latitude,
+                lastLocation.longitude
+            )
     }
+}
+
+fun toCoWin(view: View) {
+    val url = "https://selfregistration.cowin.gov.in/"
+    val intent = Intent(Intent.ACTION_VIEW)
+    intent.data = Uri.parse(url)
+    startActivity(intent)
+}
+
+fun toWho(view: View) {
+    val url =
+        "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/technical-guidance"
+    val i = Intent(Intent.ACTION_VIEW)
+    i.data = Uri.parse(url)
+    startActivity(i)
+}
+
+lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+lateinit var locationRequest: LocationRequest
+val approval = 1010
+fun CheckPermission(): Boolean {
+    if (
+        ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED ||
+        ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    ) {
+        return true
+    }
+    return false
+}
+
+fun RequestPermission() {
+    ActivityCompat.requestPermissions(
+        this,
+        arrayOf(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ),
+        approval
+    )
+}
+
+fun isLocationEnabled(): Boolean {
+    var locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+    return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+        LocationManager.NETWORK_PROVIDER
+    )
+}
 }
