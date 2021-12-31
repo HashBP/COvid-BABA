@@ -15,6 +15,7 @@
         <item name="android:layout_marginEnd">@dimen/margin_location_box</item>
         <item name="android:layout_marginBottom">@dimen/margin_location_box</item>
         <item name="android:background">@drawable/border2</item>
+
     </style>
     <style name="background_slide_style3">
         <item name="android:layout_width">match_parent</item>
@@ -48,4 +49,12 @@
         <item name="android:textStyle">bold|italic</item>
     </style>
 
+    <style name="background_slide_style5">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">200dp</item>
+    <item name="android:layout_marginStart">@dimen/margin_location_box</item>
+    <item name="android:layout_marginTop">@dimen/margin_location_box</item>
+    <item name="android:layout_marginEnd">@dimen/margin_location_box</item>
+    <item name="android:layout_marginBottom">@dimen/margin_location_box</item>
+    </style>
 </resources>

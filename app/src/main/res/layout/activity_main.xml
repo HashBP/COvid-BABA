@@ -15,89 +15,54 @@
 
     <RelativeLayout
         android:id="@+id/textview1"
-        style="@style/background_slide_style2"
+        style="@style/background_slide_style5"
         android:layout_alignParentTop="true"
-        android:visibility="invisible"
+        android:visibility="visible"
         tools:ignore="SpeakableTextPresentCheck">
 
         <TextView
             android:id="@+id/start_info"
-            android:layout_width="wrap_content"
+            style="@style/background_slide_style2"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="false"
             android:layout_centerInParent="true"
-            android:gravity="center_vertical"
+            android:gravity="clip_vertical|center_horizontal|center_vertical"
             android:lineSpacingExtra="8sp"
-            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="visible" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/textview2"
-        style="@style/background_slide_style4"
-        android:layout_below="@+id/textview1"
-        android:layout_marginTop="9dp"
-        android:visibility="visible">
 
-        <EditText
-            android:id="@+id/input_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/start_button"
-            android:hint="@string/take_name"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:paddingLeft="@dimen/edittext_padding"
-            android:textColorLink="#FFFFFF" />
-
-        <Button
-            android:id="@+id/start_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/btn_text" />
-    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/textview2new"
-        android:layout_below="@+id/textview1"
         style="@style/background_slide_style2"
-        android:visibility="gone"
-        tools:ignore="SpeakableTextPresentCheck"/>
+        android:layout_below="@+id/textview1"
+        android:visibility="visible"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <LinearLayout
-        android:id="@+id/textview3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/textview2"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="3dp"
-        android:orientation="vertical"
-        android:weightSum="8">
-
-
-    </LinearLayout>
 
     <TextView
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:id="@+id/textview3new"
     style="@style/background_slide_style3"
-    android:visibility="gone"
+    android:visibility="visible"
     android:layout_centerInParent="true"
     android:gravity="center"
     android:text="@string/textview3"
     android:textColor="#FFFFFF"
     android:textSize="16sp"
     android:textStyle="bold|italic" android:layout_above="@+id/icon"/>
+
     <RelativeLayout
         android:id="@+id/icon"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/icon_padding"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/icon1"

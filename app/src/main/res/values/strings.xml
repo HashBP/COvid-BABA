@@ -6,4 +6,6 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="take_name">Enter your Name</string>
     <string name="btn_text">Done</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
