@@ -1,5 +1,6 @@
 package com.example.gdscandroidproject
 
+
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,14 +12,18 @@ import android.location.LocationManager
 import android.net.Uri
 import android.os.Looper
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_login_menu.*
+import kotlinx.android.synthetic.main.fragment_login_page.*
+import kotlinx.android.synthetic.main.fragment_main_page.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Call
@@ -34,15 +39,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        start_button.setOnClickListener {
-
-            Log.d("Debug:", CheckPermission().toString())
-            Log.d("Debug:", isLocationEnabled().toString())
-            RequestPermission()
-            getLastLocation()
-        }
+        RequestPermission()
+        getLastLocation()
     }
-
 
     fun getLastLocation() {
         if (CheckPermission()) {
@@ -69,9 +68,8 @@ class MainActivity : AppCompatActivity() {
                     if (location == null) {
                         NewLocationData()
                     } else {
-                        Log.d("Debug:", "Your Location:" + location.longitude)
-                        start_info.text =
-                            "Hii " + input_text.text + ", \nIn Your Current Location : \n" + getLocalName(
+                        start_info.text=
+                            "In Your Current Location : \n" + getLocalName(
                                 location.latitude,
                                 location.longitude
                             ) + "\nDistrict: " + getDstName(
@@ -91,8 +89,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getLocalName(lat: Double, long: Double): String {
         var LocalName: String = ""
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var Adress = geoCoder.getFromLocation(lat, long, 3)
+        val geoCoder = Geocoder(this, Locale.getDefault())
+        val Adress = geoCoder.getFromLocation(lat, long, 3)
         Log.d("list", Adress.toString());
         LocalName = Adress.get(0).locality
         return LocalName
@@ -100,8 +98,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getDstName(lat: Double, long: Double): String {
         var DstName: String = ""
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var Adress = geoCoder.getFromLocation(lat, long, 3)
+        val geoCoder = Geocoder(this, Locale.getDefault())
+        val Adress = geoCoder.getFromLocation(lat, long, 3)
         Log.d("list", Adress.toString());
         DstName = Adress.get(0).subAdminArea
         return DstName
@@ -109,15 +107,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun getStateName(lat: Double, long: Double): String {
         var State = ""
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var Adress = geoCoder.getFromLocation(lat, long, 3)
+        val geoCoder = Geocoder(this, Locale.getDefault())
+        val Adress = geoCoder.getFromLocation(lat, long, 3)
         Log.d("list", Adress.toString());
         State = Adress.get(0).adminArea
         return State
     }
 
     fun NewLocationData() {
-        var locationRequest = LocationRequest()
+        val locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = 0
         locationRequest.fastestInterval = 0
@@ -206,9 +204,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun isLocationEnabled(): Boolean {
-        var locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        val locationManager = getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
         )
     }
+
 }

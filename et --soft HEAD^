@@ -1,0 +1,59 @@
+[33mcommit 92035da15af0f977b09fdd73fcc2d99bad873317[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Fri Dec 31 13:01:25 2021 +0530
+
+    Adding Navigation
+
+[33mcommit 02c3cb101ceaf881b8f2fc8e0801b68a2bc8a802[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Sun Dec 26 20:14:51 2021 +0530
+
+    Adding the API part for stats
+
+[33mcommit d48a371a40aeed2fd4379bd37207984293faf6bb[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Sun Dec 26 11:26:33 2021 +0530
+
+    Learning to add API requests
+
+[33mcommit 1ff805876fc80cc1ca897dd2b983c757bdf81546[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Thu Dec 23 22:06:23 2021 +0530
+
+    Changed a bit UI and added state name to the text view
+
+[33mcommit 7a766f1be8feb1024d13258073b0bf2da82851e3[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Thu Dec 23 10:51:43 2021 +0530
+
+    Added background
+
+[33mcommit ef01777424c3403d8eb66dfcd11ef04f5d571ea0[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Wed Dec 22 23:21:29 2021 +0530
+
+    Added loaction Tracker
+
+[33mcommit 6d88031973318499f1633bfdb86837875f80b7f2[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Wed Dec 22 14:00:47 2021 +0530
+
+    Added few redirecting links with icon
+
+[33mcommit b61a26dcb906c6ba2f005da209de426d9c276d39[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Wed Dec 22 12:49:10 2021 +0530
+
+    Finalised the UI
+
+[33mcommit be6ae85b3f7875f735f939409233403be2116cb9[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Wed Dec 22 02:47:30 2021 +0530
+
+    Created Layout for the app
+
+[33mcommit f7fb9934a866e375d2fabbb9717c123b824ea461[m
+Author: Harsh <Hvp6848@gmail.com>
+Date:   Mon Dec 20 18:48:24 2021 +0530
+
+    First Commit
