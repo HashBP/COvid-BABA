@@ -73,6 +73,9 @@ class MainActivity : AppCompatActivity() {
                     if (location == null) {
                         NewLocationData()
                     } else {
+                        val lati=location.latitude
+                        val long=location.longitude
+                        mapdata(lati.toFloat(),long.toFloat())
                         start_info.text=
                             "Your Current Location : \n" + getLocalName(
                                 location.latitude,
@@ -178,7 +181,22 @@ class MainActivity : AppCompatActivity() {
         i.data = Uri.parse(url)
         startActivity(i)
     }
+    var latitude :Float ?=null
+    var longitude :Float ?=null
+    public fun mapdata(lat:Float, long: Float) {
+        latitude = lat
+        longitude = long
+    }
 
+    fun toMap(view: View) {
+            var lati=latitude
+            var long=longitude
+            val url =
+                "https://www.google.com/maps/search/covid+19+vaccine/@$latitude,$longitude,15z/data=!5m1!1e7"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        }
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
     val approval = 1010
