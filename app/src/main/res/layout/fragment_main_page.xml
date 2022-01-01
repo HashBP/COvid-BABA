@@ -24,24 +24,57 @@
             android:id="@+id/start_info"
             style="@style/background_slide_style2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="clip_vertical|center_horizontal|center_vertical"
-            android:lineSpacingExtra="8sp"
+            android:lineSpacingExtra="3sp"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:visibility="visible" />
+
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/Container"
+        android:layout_below="@+id/textview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textview2new"
+            style="@style/background_slide_style2"
+            android:layout_height="200sp"
+            android:padding="@dimen/padding_state_view"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/textview2new"
-        style="@style/background_slide_style2"
-        android:layout_below="@+id/textview1"
+        android:id="@+id/containerDataState"
+        style="@style/background_slide_style5"
+        android:layout_below="@id/Container"
         android:visibility="visible"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck">
 
+        <TextView
+            android:id="@+id/textviewIndia"
+            style="@style/background_slide_style6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:height="200dp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="3sp"
+            android:paddingLeft="@dimen/dimensio_left"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+    </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"

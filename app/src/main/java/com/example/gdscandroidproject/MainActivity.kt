@@ -2,6 +2,7 @@ package com.example.gdscandroidproject
 
 
 import android.Manifest
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
@@ -10,6 +11,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,10 +19,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.gms.location.*
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login_page.*
 import kotlinx.android.synthetic.main.fragment_main_page.*
@@ -29,6 +33,7 @@ import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 import java.util.*
 
 
@@ -69,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                         NewLocationData()
                     } else {
                         start_info.text=
-                            "In Your Current Location : \n" + getLocalName(
+                            "Your Current Location : \n" + getLocalName(
                                 location.latitude,
                                 location.longitude
                             ) + "\nDistrict: " + getDstName(
@@ -111,6 +116,7 @@ class MainActivity : AppCompatActivity() {
         val Adress = geoCoder.getFromLocation(lat, long, 3)
         Log.d("list", Adress.toString());
         State = Adress.get(0).adminArea
+        fetchJson(State)
         return State
     }
 
@@ -209,5 +215,66 @@ class MainActivity : AppCompatActivity() {
             LocationManager.NETWORK_PROVIDER
         )
     }
+    fun fetchJson(ansState :String) {
+        val client =OkHttpClient()
+        val request = Request.Builder().url("https://api.apify.com/v2/key-value-stores/toDWvRj1JpTXiM8FF/records/LATEST?disableRedirect=true")
+            .build()
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            @RequiresApi(Build.VERSION_CODES.M)
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                var body = response.body?.string()
+                var gson = GsonBuilder().create()
+                var IndiaData = gson.fromJson(body,IndiaData::class.java )
+                var state =ansState
+                var stateCode: Int = 0
+                for (i in IndiaData.regionData.indices){
+                    if (IndiaData.regionData[i].region.replaceFirstChar {
+                            if (it.isLowerCase()) it.titlecase(
+                                Locale.getDefault()
+                            ) else it.toString()
+                        } == state.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }){
+                        stateCode = i
+                        break
+                    }
+                }
 
+                //Region Data
+
+                var sRegion =IndiaData.regionData[stateCode].region
+                var sActiveCases= IndiaData.regionData[stateCode].activeCases.toString()
+                var sRecovered =IndiaData.regionData[stateCode].recovered.toString()
+                var sinfected = IndiaData.regionData[stateCode].totalInfected.toString()
+                var sNinfected = IndiaData.regionData[stateCode].newInfected.toString()
+                var sNrecovered =IndiaData.regionData[stateCode].newRecovered.toString()
+                //Data India
+                var Nactive =IndiaData.activeCasesNew.toString()
+                var ActiveCases= IndiaData.activeCases.toString()
+                var Recovered =IndiaData.recovered.toString()
+                var death = IndiaData.deaths.toString()
+                var infected = IndiaData.totalCases.toString()
+                var Ndeath = IndiaData.deathsNew.toString()
+                var Nrecovered =IndiaData.recoveredNew.toString()
+
+                textviewIndia.append ("Covid-19 Stats of India\n\nActive Cases found today :-$Nactive \nDeaths Today :- $Ndeath\nNew Recovered Cases :- $Nrecovered\nTotal Active cases :- $ActiveCases \nTotal Infected Cases :- $infected\nTotal Recovered Cases as of now :- $Recovered \nTotal Death :- $death")
+                textview2new.append("Covid stats in your state $sRegion\nActiveCases :- $sActiveCases \nNewly Infected Cases :- $sNinfected\nNewly Recovered Cases :- $sNrecovered\nTotal Infected Cases :- $sinfected\nTotal Recovered Cases :- $sRecovered")
+                if (sActiveCases.toInt()>1000){
+                    textview2new.setBackgroundResource(R.drawable.redcolor)
+                }
+                else if(sActiveCases.toInt()<=1000&&sActiveCases.toInt()>100){
+                    textview2new.setBackgroundResource(R.drawable.orangecolor)
+                }
+                else
+                {
+                    textview2new.setBackgroundResource(R.drawable.greencolor)
+                }
+            }
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                println("Failed to execute request")
+            }
+        })
+    }
 }
+class IndiaData(val activeCases : Int,val activeCasesNew : Int,val recovered : Int,val recoveredNew : Int,val deaths : Int,val deathsNew : Int,val totalCases : Int,val regionData : List<StateData>)
+class StateData(val region :String, val activeCases :Int,val  newInfected: Int,val  newRecovered: Int,val recovered :Int,val decresed :Int,val totalInfected :Int)
+

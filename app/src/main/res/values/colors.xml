@@ -10,4 +10,7 @@
     <color name="background_main">#B70C6BD3</color>
     <color name="lavender">#C250FF</color>
     <color name="grey">#D8CFCF</color>
+    <color name="Red">#FFED3535</color>
+    <color name="Orange">#F39811</color>
+    <color name="Green">#77F826</color>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_location_box">10dp</dimen>
+    <dimen name="margin_location_box">4dp</dimen>
     <dimen name="location_box_shadow_radius">20dp</dimen>
     <dimen name="border_radius">20dp</dimen>
     <dimen name="textView3_padding">5dp</dimen>
@@ -8,4 +8,6 @@
     <dimen name="edittext_padding">16dp</dimen>
     <dimen name="margin_bottom">0dp</dimen>
     <dimen name="btn_margin">64dp</dimen>
+    <dimen name="padding_state_view">20dp</dimen>
+    <dimen name="dimensio_left">15sp</dimen>
 </resources>

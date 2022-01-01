@@ -9,7 +9,7 @@
     </style>
     <style name="background_slide_style2">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_height">100dp</item>
         <item name="android:layout_marginStart">@dimen/margin_location_box</item>
         <item name="android:layout_marginTop">@dimen/margin_location_box</item>
         <item name="android:layout_marginEnd">@dimen/margin_location_box</item>
@@ -51,10 +51,19 @@
 
     <style name="background_slide_style5">
     <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">200dp</item>
+    <item name="android:layout_height">wrap_content</item>
     <item name="android:layout_marginStart">@dimen/margin_location_box</item>
     <item name="android:layout_marginTop">@dimen/margin_location_box</item>
     <item name="android:layout_marginEnd">@dimen/margin_location_box</item>
     <item name="android:layout_marginBottom">@dimen/margin_location_box</item>
+    </style>
+    <style name="background_slide_style6">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">100dp</item>
+    <item name="android:layout_marginStart">@dimen/margin_location_box</item>
+    <item name="android:layout_marginTop">@dimen/margin_location_box</item>
+    <item name="android:layout_marginEnd">@dimen/margin_location_box</item>
+    <item name="android:layout_marginBottom">@dimen/margin_location_box</item>
+    <item name="android:background">@drawable/indiagradient</item>
     </style>
 </resources>
