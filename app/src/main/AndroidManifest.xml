@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.gdscandroidproject" >
 
     <!--
@@ -18,7 +19,8 @@
         android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GDSCAndroidProject" >
+        android:theme="@style/Theme.GDSCAndroidProject"
+        tools:replace="android:label">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -189,14 +189,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun toMap(view: View) {
-            var lati=latitude
-            var long=longitude
-            val url =
-                "https://www.google.com/maps/search/covid+19+vaccine/@$latitude,$longitude,15z/data=!5m1!1e7"
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            startActivity(i)
-        }
+        var lati=latitude
+        var long=longitude
+        val url =
+            "https://www.google.com/maps/search/covid+19+vaccine/@$latitude,$longitude,15z/data=!5m1!1e7"
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        startActivity(i)
+    }
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
     val approval = 1010
@@ -295,4 +295,3 @@ class MainActivity : AppCompatActivity() {
 }
 class IndiaData(val activeCases : Int,val activeCasesNew : Int,val recovered : Int,val recoveredNew : Int,val deaths : Int,val deathsNew : Int,val totalCases : Int,val regionData : List<StateData>)
 class StateData(val region :String, val activeCases :Int,val  newInfected: Int,val  newRecovered: Int,val recovered :Int,val decresed :Int,val totalInfected :Int)
-
