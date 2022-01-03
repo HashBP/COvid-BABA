@@ -1,10 +1,11 @@
 package com.example.gdscandroidproject
 
-
 import android.Manifest
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.smarteist.autoimageslider.SliderView
+import java.util.ArrayList
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
@@ -14,40 +15,98 @@ import android.net.Uri
 import android.os.Build
 import android.os.Looper
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.gms.location.*
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_login_page.*
-import kotlinx.android.synthetic.main.fragment_main_page.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.IOException
 import java.util.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
+
+
+    var url1 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/aerosol-transmission-v2.jpg?sfvrsn=acfd428f_10"
+    var url2 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/transmission-slide7.jpg?sfvrsn=b0ddf960_4"
+    var url3 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/transmission-slide-6.png?sfvrsn=16384352_7"
+    var url4 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/slide1511a38668b9a46ad823b016835e96b0b.png?sfvrsn=db807ec0_5"
+    var url5 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/travel1.png?sfvrsn=e0a3ef54_4"
+    var url6 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/travel2.png?sfvrsn=24c0aefd_4"
+    var url7 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/travel3.png?sfvrsn=25b80c4_5"
+    var url8 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/travel4.png?sfvrsn=f2e8218_4"
+    var url9 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/travel5.png?sfvrsn=ff3e23d5_4"
+    var url10 =
+        "https://www.who.int/images/default-source/wpro/health-topic/covid-19/travel6.png?sfvrsn=747c4b9f_4"
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         this.getWindow()
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        RequestPermission()
-        getLastLocation()
-    }
 
+        val sliderDataArrayList = ArrayList<SliderData>()
+
+        sliderDataArrayList.add(SliderData(url1))
+        sliderDataArrayList.add(SliderData(url2))
+        sliderDataArrayList.add(SliderData(url3))
+        sliderDataArrayList.add(SliderData(url4))
+        sliderDataArrayList.add(SliderData(url5))
+        sliderDataArrayList.add(SliderData(url6))
+        sliderDataArrayList.add(SliderData(url7))
+        sliderDataArrayList.add(SliderData(url8))
+        sliderDataArrayList.add(SliderData(url9))
+        sliderDataArrayList.add(SliderData(url10))
+
+        val adapter = SliderAdapter(this, sliderDataArrayList)
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        slider.autoCycleDirection= SliderView.LAYOUT_DIRECTION_LTR
+
+        slider.setSliderAdapter(adapter)
+
+        slider.scrollTimeInSec = 2
+
+        slider.isAutoCycle = true
+
+
+        slider.startAutoCycle()
+
+        start_button. setOnClickListener {
+            val name=input_text.text
+            visible()
+            RequestPermission()
+            getLastLocation()
+        }
+    }
+ private fun visible(){
+
+//     logo.visibility=View.GONE
+//     textview2.visibility=View.GONE
+//     slider.visibility=View.GONE
+Log.d("Debug","Hello")
+     Container.visibility=View.VISIBLE
+     textview1.visibility=View.VISIBLE
+     containerDataState.visibility=View.VISIBLE
+     textview3new.visibility=View.VISIBLE
+     icon.visibility=View.VISIBLE
+
+
+ }
     fun getLastLocation() {
         if (CheckPermission()) {
             if (isLocationEnabled()) {
@@ -292,6 +351,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 }
 class IndiaData(val activeCases : Int,val activeCasesNew : Int,val recovered : Int,val recoveredNew : Int,val deaths : Int,val deathsNew : Int,val totalCases : Int,val regionData : List<StateData>)
 class StateData(val region :String, val activeCases :Int,val  newInfected: Int,val  newRecovered: Int,val recovered :Int,val decresed :Int,val totalInfected :Int)

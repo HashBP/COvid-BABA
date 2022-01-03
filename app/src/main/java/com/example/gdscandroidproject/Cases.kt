@@ -1,6 +1,5 @@
 package com.example.gdscandroidproject
 
-import android.app.appsearch.Migrator
 import com.google.gson.annotations.SerializedName
 
 data class Cases(

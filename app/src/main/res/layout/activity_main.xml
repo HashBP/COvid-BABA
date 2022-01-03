@@ -1,15 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_centerInParent="false"
+    android:layout_centerHorizontal="false"
+    android:layout_centerVertical="false"
+    android:background="@drawable/main_background"
+    android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView2"
-        android:name="com.example.gdscandroidproject.MainPage"
+    <RelativeLayout
+        android:id="@+id/textview1"
+        style="@style/background_slide_style5"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <TextView
+            android:id="@+id/start_info"
+            style="@style/background_slide_style2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="clip_vertical|center_horizontal|center_vertical"
+            android:lineSpacingExtra="3sp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Container"
+        android:layout_below="@+id/textview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/textview2new"
+            style="@style/background_slide_style2"
+            android:layout_height="200sp"
+            android:padding="@dimen/padding_state_view"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/containerDataState"
+        style="@style/background_slide_style5"
+        android:layout_below="@id/Container"
+        android:visibility="invisible"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <TextView
+            android:id="@+id/textviewIndia"
+            style="@style/background_slide_style6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:height="200dp"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="3sp"
+            android:paddingLeft="@dimen/dimensio_left"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textview3new"
+        style="@style/background_slide_style3"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@+id/icon"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/textview3"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/icon"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/icon_padding"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/icon1"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/icons"
+            android:onClick="toCoWin"
+            app:srcCompat="@drawable/ic_guidelines__7_" />
+
+        <ImageView
+            android:id="@+id/icon2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/icons"
+            android:onClick="toMap"
+            app:srcCompat="@drawable/ic_untitled_design__4_" />
+
+        <ImageView
+            android:id="@+id/icon3"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/icons"
+            android:onClick="toWho"
+            app:srcCompat="@drawable/ic_guidelines"
+            tools:ignore="ImageContrastCheck" />
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
-</LinearLayout>
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="false"
+        android:background="@drawable/main_background"
+        android:orientation="vertical"
+        android:weightSum="10"
+        tools:context=".MainActivity">
+
+        <RelativeLayout
+            android:id="@+id/logo"
+            style="@style/background_slide_style5"
+            android:layout_height="100sp"
+            android:visibility="visible"
+            android:layout_weight="5"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <ImageView
+                android:id="@+id/logoimg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/ic_white_merry_christmas_and_happy_new_year_facebook_cover" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/textview2"
+            style="@style/background_slide_style4"
+            android:layout_marginTop="9dp"
+            android:layout_weight="2">
+
+            <EditText
+                android:id="@+id/input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/start_button"
+                android:hint="Enter your Name"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingLeft="@dimen/edittext_padding"
+                android:textColorLink="#FFFFFF" />
+
+            <Button
+                android:id="@+id/start_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Done" />
+        </RelativeLayout>
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="3"
+            app:sliderAnimationDuration="1000"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorEnabled="true"
+            app:sliderIndicatorGravity="center_horizontal"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="5dp"
+            app:sliderIndicatorRadius="1dp"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="7">
+
+        </com.smarteist.autoimageslider.SliderView>
+    </LinearLayout>
+
+</RelativeLayout>
