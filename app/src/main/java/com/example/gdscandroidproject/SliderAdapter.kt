@@ -1,6 +1,5 @@
 package com.example.gdscandroidproject
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.smarteist.autoimageslider.SliderViewAdapter
 import java.util.ArrayList
 
-class SliderAdapter(context: Context?, sliderDataArrayList: ArrayList<SliderData>) :
+class SliderAdapter(context: MainActivity, sliderDataArrayList: ArrayList<SliderData>) :
     SliderViewAdapter<SliderAdapter.SliderAdapterViewHolder>() {
     // list for storing urls of images.
     private val mSliderItems: List<SliderData>

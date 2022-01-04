@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigate"
+    app:startDestination="@id/mainPageFragment">
+
+    <activity
+        android:id="@+id/mainPageFragment"
+        android:name="com.example.gdscandroidproject.MainPageFragment"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page" />
+    <fragment
+        android:id="@+id/mainActivity2"
+        android:name="com.example.gdscandroidproject.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" >
+        <action
+            android:id="@+id/toMainPage"
+            app:destination="@id/mainPageFragment" />
+    </fragment>
+</navigation>
