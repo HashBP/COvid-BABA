@@ -7,7 +7,7 @@ As of current Covid situation, There is a lot of variation in number of cases in
 ### Proposed Solution
 This app give user an interface to overcome all the problems regarding information aboutCoivid situation in our surrounding and to keep track of the current Covid cases in your area and country and also to provides  an interface where you can get all the useful links at one place regarding Covid. Its features include count of live Covid cases and links redirecting you to some very useful websites. 
 
-###Functionality & Concepts used :
+### Functionality & Concepts used :
 Following are few android concepts used to achieve the functionalities in app :
 * Combination of different Layouts : Most of the activities in the app uses a flexible layout, which is easy to handle for different screen sizes.
 * Simple & Easy Views Design : Use of familiar audience EditText with hints and interactive buttons made it easier for anyone to register without providing any detailed instructions pages.
@@ -22,3 +22,8 @@ Following are few android concepts used to achieve the functionalities in app :
 * You can access the app :<br/> 
 APK file :-  https://drive.google.com/file/d/1u8SAllJzjor-N_d7XypjCbaJUeZ6nMsV/view?usp=sharing <br/> 
 Source code :- https://github.com/HashBP/COvid-BABA
+
+There are few improvements can be made in this project : <br/>
+* Adding custom search window, So someone can get details about anyh place by searching the name of it.
+* More precise data like including the district wise stats about Covid (didn't added because of unavailability of open API's).
+* Adding some navigation fragments for better functioning of the app instid of using visibility property. 
