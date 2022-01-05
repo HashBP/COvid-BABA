@@ -12,11 +12,15 @@ Following are few android concepts used to achieve the functionalities in app :
 * Combination of different Layouts : Most of the activities in the app uses a flexible layout, which is easy to handle for different screen sizes.
 * Simple & Easy Views Design : Use of familiar audience EditText with hints and interactive buttons made it easier for anyone to register without providing any detailed instructions pages.
 * This application uses GPS tracking techniques by acquiring the geo-location from the driver's mobile device and mapping it to the database. Google API’s are used for accuracy in finding the current situation of your state.
-* Also there is an Image slider in the login page which keeps on sliding posters related to Covid precaution.
-* There is a color changing function in the background which tells you the zone you are in (i.e Red, Orange or Green)  and changed background color of the text view according to the number of cases detected in your state. 
-![This is an image](https://drive.google.com/file/d/142DXy_I-OLOdYgVqCMs_U20FUyDEs3PK/view?usp=sharing)
+* Also there is an Image slider in the login page which keeps on sliding posters related to Covid precaution.  
 * Few animations are used in the app while showing the stats.
 * Use of OKHTTP for fetching API for covid related numbers of states and India.
+* There is a color changing function in the background which tells you the zone you are in (i.e Red, Orange or Green)  and changed background color of the text view according to the number of cases detected in your state.
+
+<img src= "app/src/main/res/drawable/img1.jpeg" height="500">
+<img src= "app/src/main/res/drawable/img2.jpeg" height="500">
+<img src= "app/src/main/res/drawable/img3.jpeg" height="500">
+
 ## Application Link & Future Scope :
 
 * You can access the app :<br/> 
