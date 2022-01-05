@@ -25,7 +25,8 @@ Following are few android concepts used to achieve the functionalities in app :
 
 * You can access the app :<br/> 
 APK file :-  https://drive.google.com/file/d/1u8SAllJzjor-N_d7XypjCbaJUeZ6nMsV/view?usp=sharing <br/> 
-Source code :- https://github.com/HashBP/COvid-BABA
+Source code :- https://github.com/HashBP/COvid-BABA</br>
+App Preview Video :- https://drive.google.com/file/d/1lDiX5EB9bQDwbYyI4FBJl1yCiCKewyDt/view?usp=sharing
 
 There are few improvements can be made in this project : <br/>
 * Adding custom search window, So someone can get details about anyh place by searching the name of it.
